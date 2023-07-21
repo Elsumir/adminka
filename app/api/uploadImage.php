@@ -7,6 +7,11 @@ if ($_SESSION["auth"] != true) {
 
 if (file_exists($_FILES["image"]["tmp_name"]) && is_uploaded_file($_FILES["image"]["tmp_name"])){
     $fileExt = explode("/", $_FILES["image"]["type"])[1];
+
+    if($fileExt == "svg+xml"){
+        $fileExt = "svg";
+    }
+    
     $fileName = uniqid() . "." . $fileExt;
 
     if (!is_dir("../../img/")) {
